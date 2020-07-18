@@ -10,24 +10,71 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_18_143046) do
+ActiveRecord::Schema.define(version: 6) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "agents", force: :cascade do |t|
-    t.integer "license"
+    t.string "license"
     t.bigint "user_id", null: false
+    t.bigint "company_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_id"], name: "index_agents_on_company_id"
     t.index ["user_id"], name: "index_agents_on_user_id"
+  end
+
+  create_table "appointments", force: :cascade do |t|
+    t.datetime "date_time"
+    t.bigint "client_id", null: false
+    t.bigint "agent_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["agent_id"], name: "index_appointments_on_agent_id"
+    t.index ["client_id"], name: "index_appointments_on_client_id"
   end
 
   create_table "clients", force: :cascade do |t|
     t.bigint "user_id", null: false
+    t.bigint "company_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_id"], name: "index_clients_on_company_id"
     t.index ["user_id"], name: "index_clients_on_user_id"
+  end
+
+  create_table "companies", force: :cascade do |t|
+    t.string "logo"
+    t.string "name"
+    t.string "address"
+    t.integer "zipcode"
+    t.float "latitude"
+    t.float "longitude"
+    t.string "phone"
+    t.string "email"
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "properties", force: :cascade do |t|
+    t.string "image"
+    t.string "status"
+    t.string "category"
+    t.string "address"
+    t.integer "zipcode"
+    t.float "latitude"
+    t.float "longitude"
+    t.integer "prices"
+    t.integer "beds"
+    t.integer "baths"
+    t.integer "sqft"
+    t.integer "built"
+    t.bigint "agent_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["agent_id"], name: "index_properties_on_agent_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -38,10 +85,16 @@ ActiveRecord::Schema.define(version: 2020_07_18_143046) do
     t.string "email"
     t.string "role"
     t.string "avatar"
+    t.integer "zipcode"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "agents", "companies"
   add_foreign_key "agents", "users"
+  add_foreign_key "appointments", "agents"
+  add_foreign_key "appointments", "clients"
+  add_foreign_key "clients", "companies"
   add_foreign_key "clients", "users"
+  add_foreign_key "properties", "agents"
 end
