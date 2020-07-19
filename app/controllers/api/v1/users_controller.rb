@@ -1,7 +1,7 @@
 class Api::V1::UsersController < ApplicationController
 
-  skip_before_action :logged_in?, only: [:index, :create]
-  # before_action :current_user, only: [:show, :update, :destroy]
+  skip_before_action :logged_in?, only: [:create]
+  before_action :set_user, only: [:show, :update, :destroy]
 
   def index
     @users = User.all
@@ -9,7 +9,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
     render json: @user
   end
 
@@ -25,7 +25,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
     if @user.update(user_params)
     render json: @user
     else
@@ -34,16 +34,16 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
     @user.destroy
   end
 
 
   private
 
-  # def current_user
-  #   @user = User.find(params[:id])
-  # end
+  def set_user
+    @user = User.find(params[:id])
+  end
 
   def user_params
     params.permit(:username, :password, :password_confirmation, :firstname, :lastname, :email, :role, :avatar, :zipcode)

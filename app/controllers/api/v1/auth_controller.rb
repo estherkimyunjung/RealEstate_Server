@@ -6,7 +6,8 @@ class Api::V1::AuthController < ApplicationController
     user = User.find_by(username: params[:username])
 
     if user && user.authenticate(params[:password])
-      render json: {username: user.username, firstname: user.firstname, lastname: user.lastname, email: user.email, role: user.role, avatar: user.avatar, token: encode_token({user_id: user.id})}
+      # render json: {username: user.username, firstname: user.firstname, lastname: user.lastname, email: user.email, role: user.role, avatar: user.avatar, zipcode: user.zipcode, token: encode_token({user_id: user.id})}
+      render json: user
     else
       render json: {error: "Invalid usernamd or password"}
     end

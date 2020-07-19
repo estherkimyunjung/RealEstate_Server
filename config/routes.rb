@@ -5,8 +5,8 @@ Rails.application.routes.draw do
       # resources :users
       # resources :clients
       with_options(except: [:new, :edit]) do |opt|
-        opt.resource :users
-        opt.resource :companies
+        opt.resources :users
+        opt.resources :companies
         opt.resources :clients
         opt.resources :agents
         opt.resources :properties
