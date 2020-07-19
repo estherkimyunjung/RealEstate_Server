@@ -12,4 +12,5 @@ class Api::V1::AuthController < ApplicationController
       render json: {error: "Invalid usernamd or password"}
     end
   end
+  
 end

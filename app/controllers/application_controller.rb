@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::API
-  before_action :logged_in?
-  before_action :check_authentication
+  before_action :logged_in?, :check_authentication
     
   def encode_token(payload) # for token generation
       JWT.encode(payload, "RealEstate1800", "HS256") #algo is optional as a default HS256
@@ -69,5 +68,3 @@ class ApplicationController < ActionController::API
   # end
 
 end
-
-
