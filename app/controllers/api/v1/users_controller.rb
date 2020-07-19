@@ -1,6 +1,7 @@
 class Api::V1::UsersController < ApplicationController
 
-  skip_before_action :logged_in?, only: [:create, :index]
+  skip_before_action :logged_in?, only: [:index, :create]
+  # before_action :current_user, only: [:show, :update, :destroy]
 
   def index
     @users = User.all
@@ -11,22 +12,41 @@ class Api::V1::UsersController < ApplicationController
     @user = User.find(params[:id])
     render json: @user
   end
-  
-  
+
   #Sign Up
   def create
     @user = User.new(user_params)
     if @user.valid?
-        @user.save
-        render json: { user: UserSerializer.new(@user) }, status: :created
-    else
-        render json: { error: 'failed to create user'}, status: :not_acceptable
+      @user.save
+      render json: { user: UserSerializer.new(@user) }, status: :created, location: @user
+    else 
+      render json: @user.errors, status: :unprocessable_entity
     end
   end
 
-  private
-  def user_params
-      params.permit(:username, :password, :password_confirmation, :firstname, :lastname, :email, :role, :avatar)
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+    render json: @user
+    else
+    render json: @user.errors, status: :unprocessable_entity
+    end
   end
-  
+
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+  end
+
+
+  private
+
+  # def current_user
+  #   @user = User.find(params[:id])
+  # end
+
+  def user_params
+    params.permit(:username, :password, :password_confirmation, :firstname, :lastname, :email, :role, :avatar, :zipcode)
+  end
+
 end

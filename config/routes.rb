@@ -2,7 +2,16 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   namespace :api do
     namespace :v1 do
-      resources :users, only: [:create, :index]
+      # resources :users
+      # resources :clients
+      with_options(except: [:new, :edit]) do |opt|
+        opt.resource :users
+        opt.resource :companies
+        opt.resources :clients
+        opt.resources :agents
+        opt.resources :properties
+        opt.resources :appointments
+      end
       post '/login', to: 'auth#create'
     end
   end
