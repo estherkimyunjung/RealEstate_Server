@@ -8,12 +8,12 @@ class CreateProperties < ActiveRecord::Migration[6.0]
       t.integer :zipcode
       t.float :latitude
       t.float :longitude
-      t.integer :prices
+      t.string :prices
       t.integer :beds
       t.integer :baths
-      t.integer :sqft
+      t.string :sqft
       t.integer :built
-      t.belongs_to :agent, null: false, foreign_key: true
+      t.references :agent, foreign_key: true
 
       t.timestamps
     end

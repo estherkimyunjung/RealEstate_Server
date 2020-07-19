@@ -17,8 +17,8 @@ ActiveRecord::Schema.define(version: 6) do
 
   create_table "agents", force: :cascade do |t|
     t.string "license"
-    t.bigint "user_id", null: false
-    t.bigint "company_id", null: false
+    t.bigint "user_id"
+    t.bigint "company_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["company_id"], name: "index_agents_on_company_id"
@@ -27,8 +27,8 @@ ActiveRecord::Schema.define(version: 6) do
 
   create_table "appointments", force: :cascade do |t|
     t.datetime "date_time"
-    t.bigint "client_id", null: false
-    t.bigint "agent_id", null: false
+    t.bigint "client_id"
+    t.bigint "agent_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["agent_id"], name: "index_appointments_on_agent_id"
@@ -36,8 +36,8 @@ ActiveRecord::Schema.define(version: 6) do
   end
 
   create_table "clients", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "company_id", null: false
+    t.bigint "user_id"
+    t.bigint "company_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["company_id"], name: "index_clients_on_company_id"
@@ -66,12 +66,12 @@ ActiveRecord::Schema.define(version: 6) do
     t.integer "zipcode"
     t.float "latitude"
     t.float "longitude"
-    t.integer "prices"
+    t.string "prices"
     t.integer "beds"
     t.integer "baths"
-    t.integer "sqft"
+    t.string "sqft"
     t.integer "built"
-    t.bigint "agent_id", null: false
+    t.bigint "agent_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["agent_id"], name: "index_properties_on_agent_id"
@@ -90,11 +90,11 @@ ActiveRecord::Schema.define(version: 6) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "agents", "companies"
-  add_foreign_key "agents", "users"
-  add_foreign_key "appointments", "agents"
-  add_foreign_key "appointments", "clients"
-  add_foreign_key "clients", "companies"
-  add_foreign_key "clients", "users"
-  add_foreign_key "properties", "agents"
+  add_foreign_key "agents", "companies", on_delete: :cascade
+  add_foreign_key "agents", "users", on_delete: :cascade
+  add_foreign_key "appointments", "agents", on_delete: :cascade
+  add_foreign_key "appointments", "clients", on_delete: :cascade
+  add_foreign_key "clients", "companies", on_delete: :cascade
+  add_foreign_key "clients", "users", on_delete: :cascade
+  add_foreign_key "properties", "agents", on_delete: :cascade
 end
