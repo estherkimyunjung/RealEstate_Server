@@ -6,9 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+User.destroy_all
 Client.destroy_all
 Agent.destroy_all
-User.destroy_all
 Company.destroy_all
 Appointment.destroy_all
 Property.destroy_all
@@ -20,11 +20,11 @@ u4 = User.create(username: 'jh123', password: 'jh12345', firstname:'Jaehack', la
 
 co1 = Company.create(logo: 'LOGO', name: 'Home1800', address: '25931 Brad Hurst Ct , Katy, TX 77494', zipcode: '77494', latitude: 29.723549, longitude: -95.797884, phone: '123-456-7899', email: 'home_1800@home.io', description: 'Our company is focus on Family-like agent, Proper service, Customer interests')
 
-cl1 = Client.create!(user: u1, company: co1)
-cl2 = Client.create!(user: u2, company: co1)
+cl1 = Client.create(user: u1, company: co1)
+cl2 = Client.create(user: u2, company: co1)
 
-ag1 = Agent.create!(user: u3, company: co1, license: '12345')
-ag2 = Agent.create!(user: u4, company: co1, license: '54687')
+ag1 = Agent.create(user: u3, company: co1, license: '12345')
+ag2 = Agent.create(user: u4, company: co1, license: '54687')
 
 ap1 = Appointment.create(client: cl1, agent: ag1, date_time: "2020-08-02 10:30:00")
 ap1 = Appointment.create(client: cl1, agent: ag2, date_time: "2020-08-10 12:30:00")

@@ -1,5 +1,5 @@
 class Agent < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, dependent: :destroy
   belongs_to :company
   has_many :properties
   has_many :appointments
