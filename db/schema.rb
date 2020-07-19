@@ -90,11 +90,11 @@ ActiveRecord::Schema.define(version: 6) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "agents", "companies", on_delete: :cascade
-  add_foreign_key "agents", "users", on_delete: :cascade
-  add_foreign_key "appointments", "agents", on_delete: :cascade
-  add_foreign_key "appointments", "clients", on_delete: :cascade
-  add_foreign_key "clients", "companies", on_delete: :cascade
-  add_foreign_key "clients", "users", on_delete: :cascade
-  add_foreign_key "properties", "agents", on_delete: :cascade
+  add_foreign_key "agents", "companies"
+  add_foreign_key "agents", "users"
+  add_foreign_key "appointments", "agents"
+  add_foreign_key "appointments", "clients"
+  add_foreign_key "clients", "companies"
+  add_foreign_key "clients", "users"
+  add_foreign_key "properties", "agents"
 end

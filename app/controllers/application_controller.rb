@@ -7,9 +7,9 @@ class ApplicationController < ActionController::API
 
   def logged_in?
     headers = request.headers["Authorization"]
-    if !headers
-      return nil
-    end
+    # if !headers
+    #   return nil
+    # end
     token = headers.split(" ")[1]
 
     begin
