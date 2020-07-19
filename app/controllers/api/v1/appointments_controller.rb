@@ -4,7 +4,6 @@ class Api::V1::AppointmentsController < ApplicationController
   # GET /appointments
   def index
     @appointments = Appointment.all
-
     render json: @appointments
   end
 

@@ -4,7 +4,6 @@ class Api::V1::ClientsController < ApplicationController
   # GET /clients
   def index
     @clients = Client.all
-
     render json: @clients
   end
 

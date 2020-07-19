@@ -4,7 +4,6 @@ class Api::V1::AgentsController < ApplicationController
   # GET /agents
   def index
     @agents = Agent.all
-
     render json: @agents
   end
 
