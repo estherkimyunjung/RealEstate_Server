@@ -16,7 +16,7 @@ Property.destroy_all
 u1 = User.create(username: 'est123', password: 'es12345', firstname:'Esther', lastname:'Kim', email: 'esther@gmail.com', role: 'client', avatar: 'https://i.pinimg.com/564x/30/24/f8/3024f8d283b734bd6b7e4fc5531fe2e9.jpg', zipcode: 77024)
 u2 = User.create(username: 'jam123', password: 'ja12345', firstname:'James', lastname:'Kim', email: 'james@gmail.com', role: 'client', avatar: 'https://i.pinimg.com/564x/4a/1f/76/4a1f76ca52bcb90ab2cb3343be8bb2ba.jpg', zipcode: 77024)
 u3 = User.create(username: 'yun123', password: 'yu12345', firstname:'Yunjung', lastname:'Kim', email: 'yun@gmail.com', role: 'Agent', avatar: 'https://i.pinimg.com/564x/1a/69/9a/1a699af5ba1c67fd07711a66bbe733eb.jpg', zipcode: 77079)
-u4 = User.create(username: 'jh123', password: 'jh12345', firstname:'Jaehack', lastname:'Kim', email: 'jae@gmail.com', role: 'Agent', avatar: 'https://i.pinimg.com/564x/1a/69/9a/1a699af5ba1c67fd07711a66bbe733eb.jpg', zipcode: 77494)
+u4 = User.create(username: 'jh123', password: 'jh12345', firstname:'John', lastname:'Lee', email: 'jae@gmail.com', role: 'Agent', avatar: 'https://i.pinimg.com/564x/9e/57/8b/9e578b47678afbfd98ea369302875f55.jpg', zipcode: 77494)
 
 co1 = Company.create(logo: 'LOGO', name: 'Home1800', address: '25931 Brad Hurst Ct , Katy, TX 77494', zipcode: '77494', latitude: 29.723549, longitude: -95.797884, phone: '123-456-7899', email: 'home_1800@home.io', description: 'Our company is focus on Family-like agent, Proper service, Customer interests')
 
