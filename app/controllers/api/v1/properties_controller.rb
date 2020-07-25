@@ -4,12 +4,13 @@ class Api::V1::PropertiesController < ApplicationController
   # GET /properties
   def index
     @properties = Property.all
-    render json: @properties
+    render json: @properties.to_json(:include => {:agent => {:include => :user }}) 
+    #nested user object add in serializers
   end
 
   # GET /properties/1
   def show
-    render json: @property
+    render json: @property.to_json(:include => {:agent => {:include => :user }})
   end
 
   # POST /properties
