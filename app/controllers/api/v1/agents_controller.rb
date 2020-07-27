@@ -44,7 +44,7 @@ class Api::V1::AgentsController < ApplicationController
     end
 
     def agent_params
-      params.require(:agent).permit(:license, :user, :company)
+      params.require(:agent).permit(:license, :experienceyears, :user, :company)
     end
 
 end
