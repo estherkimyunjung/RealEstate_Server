@@ -1,3 +1,3 @@
 class AgentSerializer < ActiveModel::Serializer
-  attributes :id, :license, :user, :company
+  attributes :id, :license, :experienceyears, :user, :company
 end

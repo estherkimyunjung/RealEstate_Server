@@ -4,6 +4,7 @@ class CreateProperties < ActiveRecord::Migration[6.0]
       t.string :image
       t.string :status
       t.string :category
+      t.string :schooldist
       t.string :address
       t.integer :zipcode
       t.float :latitude

@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 6) do
 
   create_table "agents", force: :cascade do |t|
     t.string "license"
+    t.integer "experienceyears"
     t.bigint "user_id"
     t.bigint "company_id"
     t.datetime "created_at", precision: 6, null: false
@@ -27,6 +28,7 @@ ActiveRecord::Schema.define(version: 6) do
 
   create_table "appointments", force: :cascade do |t|
     t.datetime "date_time"
+    t.string "message"
     t.bigint "client_id"
     t.bigint "agent_id"
     t.datetime "created_at", precision: 6, null: false
@@ -62,6 +64,7 @@ ActiveRecord::Schema.define(version: 6) do
     t.string "image"
     t.string "status"
     t.string "category"
+    t.string "schooldist"
     t.string "address"
     t.integer "zipcode"
     t.float "latitude"
