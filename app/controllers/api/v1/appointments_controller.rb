@@ -4,12 +4,12 @@ class Api::V1::AppointmentsController < ApplicationController
   # GET /appointments
   def index
     @appointments = Appointment.all
-    render json: @appointments
+      render json: @appointments.to_json(:include => {:agent => {:include => :user }, :client => {:include => :user }}) 
   end
 
   # GET /appointments/1
   def show
-    render json: @appointment
+    render json: @appointment.to_json(:include => {:agent => {:include => :user }, :client => {:include => :user }}) 
   end
 
   # POST /appointments
