@@ -14,10 +14,11 @@ class Api::V1::AppointmentsController < ApplicationController
 
   # POST /appointments
   def create
+    # byebug()
     @appointment = Appointment.new(appointment_params)
 
     if @appointment.save
-      render json: @appointment, status: :created, location: @appointment
+      render json: @appointment, status: :created
     else
       render json: @appointment.errors, status: :unprocessable_entity
     end
@@ -44,7 +45,7 @@ class Api::V1::AppointmentsController < ApplicationController
     end
 
     def appointment_params
-      params.require(:appointment).permit(:date_time, :client, :agent)
+      params.require(:appointment).permit(:date_time, :message, :client_id, :agent_id)
     end
 
 end
