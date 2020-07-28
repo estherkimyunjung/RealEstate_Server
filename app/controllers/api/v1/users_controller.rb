@@ -4,12 +4,12 @@ class Api::V1::UsersController < ApplicationController
 
   def index
     @users = User.all
-    render json: @users
+    render json: @users.to_json(:include => {:agent => {:include => :user }, :client => {:include => :user }}) 
   end
 
   def show
     # @user = User.find(params[:id])
-    render json: @user
+    render json: @user.to_json(:include => {:agent => {:include => :user }, :client => {:include => :user }}) 
   end
 
   #Sign Up
